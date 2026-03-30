@@ -8,7 +8,7 @@ export default function Navbar() {
         </div>
         <nav className="navbar-links">
           <a href="#generate" className="nav-link">Generate</a>
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="nav-link nav-link-outline">GitHub</a>
+          {/* <a href="https://github.com" target="_blank" rel="noreferrer" className="nav-link nav-link-outline">GitHub</a> */}
         </nav>
       </div>
     </header>
