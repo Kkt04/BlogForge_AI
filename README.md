@@ -133,6 +133,3 @@ This project uses **GitHub Actions** to auto-deploy to **Vercel** on every push 
 
 ---
 
-## License
-
-MIT
