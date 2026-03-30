@@ -2,8 +2,6 @@
 
 An AI-powered blog post generator built with React, Node.js, Express, and the Groq API (LLaMA 3.3-70B). Enter a topic, choose your tone and length, and get a structured, publish-ready blog post in seconds.
 
-🔗 **Live Demo**: https://blog-forge-ai-ten.vercel.app/
-
 ---
 
 ## Features
