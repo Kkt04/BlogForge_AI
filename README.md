@@ -130,6 +130,3 @@ This project uses **GitHub Actions** to auto-deploy to **Vercel** on every push 
 | `ANTHROPIC_API_KEY`| server   | Your Groq API key        |
 | `PORT`             | server   | Server port (default 5001)|
 | `VITE_API_URL`     | client   | Backend URL              |
-
----
-
