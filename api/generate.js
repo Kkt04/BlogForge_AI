@@ -3,6 +3,8 @@ const Groq = require('groq-sdk').default;
 const groq = new Groq({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 module.exports = async function handler(req, res) {
+  console.log('API called, method:', req.method);
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }

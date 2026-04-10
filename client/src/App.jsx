@@ -14,7 +14,9 @@ export default function App() {
     setError('');
     setBlog(null);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/generate`, {
+      const isProd = import.meta.env.PROD;
+      const apiUrl = isProd ? '' : (import.meta.env.VITE_API_URL || '');
+      const res = await fetch(`${apiUrl}/api/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
