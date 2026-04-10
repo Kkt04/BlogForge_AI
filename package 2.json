@@ -1,0 +1,8 @@
+{
+  "name": "blogforge-api",
+  "version": "1.0.0",
+  "main": "api/generate.js",
+  "dependencies": {
+    "groq-sdk": "^1.1.2"
+  }
+}
