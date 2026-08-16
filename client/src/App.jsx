@@ -36,7 +36,7 @@ export default function App() {
       <Navbar />
       <main className="container" id="generate">
         <section className="hero">
-          <div className="hero-badge">✦ Powered by Claude AI</div>
+          {/* <div className="hero-badge">✦ Powered by Claude AI</div> */}
           <h1 className="hero-title">
             Generate Blog Posts<br />
             <span className="highlight">in Seconds</span>

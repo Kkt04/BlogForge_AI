@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Groq = require('groq-sdk').default;
 
-const groq = new Groq({ apiKey: process.env.ANTHROPIC_API_KEY });
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 router.post('/generate', async (req, res) => {
   const { topic, tone, wordCount, keywords } = req.body;
