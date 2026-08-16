@@ -11,18 +11,18 @@ An AI-powered blog post generator built with React, Node.js, Express, and the Gr
 - Optional keyword injection for SEO
 - Live stats: word count, read time, section count
 - One-click copy to clipboard
-- Deployed on Vercel with GitHub Actions CI/CD
+- Deployable to Vercel (serverless) or run locally with Express
 
 ---
 
 ## Tech Stack
 
-| Layer      | Tech                        |
-|------------|-----------------------------|
-| Frontend   | React 18, Vite, CSS         |
-| Backend    | Node.js, Express            |
-| AI         | Groq API (LLaMA 3.3-70B)   |
-| Deployment | Vercel + GitHub Actions     |
+| Layer      | Tech                          |
+|------------|-------------------------------|
+| Frontend   | React 18, Vite, CSS           |
+| Backend    | Node.js, Express              |
+| AI         | Groq API (LLaMA 3.3-70B)      |
+| Deployment | Vercel (serverless functions) |
 
 ---
 
@@ -38,16 +38,20 @@ blogforge-ai/
 │   │   │   └── BlogOutput.jsx
 │   │   ├── App.jsx
 │   │   └── App.css
+│   ├── vite.config.js       # Dev proxy for /api → localhost:5001
 │   └── index.html
 │
-├── server/                  # Node/Express backend
+├── server/                  # Node/Express backend (local dev)
 │   ├── routes/
 │   │   └── generate.js      # Groq API integration
 │   └── index.js
 │
+├── api/
+│   └── generate.js          # Vercel serverless function (production)
+│
 └── .github/
     └── workflows/
-        └── deploy.yml       # CI/CD pipeline
+        └── deploy.yml       # CI checks
 ```
 
 ---
@@ -57,7 +61,6 @@ blogforge-ai/
 ### Prerequisites
 - Node.js v18+
 - A [Groq API key](https://console.groq.com/)
-- A [Vercel account](https://vercel.com/) (for deployment)
 
 ### 1. Clone the repo
 
@@ -71,12 +74,13 @@ cd blogforge-ai
 ```bash
 cd server
 npm install
+cp .env.example .env   # then paste your Groq API key
 ```
 
-Create a `.env` file in `/server`:
+Update `server/.env`:
 
 ```env
-ANTHROPIC_API_KEY=your_groq_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
 PORT=5001
 ```
 
@@ -93,40 +97,39 @@ cd client
 npm install
 ```
 
-Create a `.env` file in `/client`:
-
-```env
-VITE_API_URL=http://localhost:5001
-```
-
 Start the frontend:
 
 ```bash
 npm run dev
 ```
 
-App will be live at `http://localhost:3000`
+The Vite dev server proxies `/api/*` to `http://localhost:5001`, so no extra config is needed.
 
----
-
-## Deployment
-
-This project uses **GitHub Actions** to auto-deploy to **Vercel** on every push to `main`.
-
-### Steps:
-1. Push your code to GitHub
-2. Connect your repo to Vercel
-3. Add `VERCEL_TOKEN` to GitHub repository secrets
-4. Set environment variables in Vercel dashboard:
-   - `ANTHROPIC_API_KEY` → your Groq API key
-5. Any push to `main` triggers automatic deployment
+App will be live at `http://localhost:3000`.
 
 ---
 
 ## Environment Variables
 
-| Variable           | Location | Description              |
-|--------------------|----------|--------------------------|
-| `ANTHROPIC_API_KEY`| server   | Your Groq API key        |
-| `PORT`             | server   | Server port (default 5001)|
-| `VITE_API_URL`     | client   | Backend URL              |
+| Variable       | Location       | Description                     |
+|----------------|----------------|---------------------------------|
+| `GROQ_API_KEY` | server / api   | Your Groq API key               |
+| `PORT`         | server         | Server port (default `5001`)    |
+
+> `.env` files are git-ignored, so your API key never gets committed.
+> Reference `.env.example` for the required variables.
+
+---
+
+## Deployment (Vercel)
+
+1. Push your code to GitHub
+2. Import the repo in Vercel
+3. Add the `GROQ_API_KEY` environment variable in the Vercel dashboard
+4. Vercel uses `vercel.json` to build the client and route `/api/*` to the serverless function
+
+---
+
+## License
+
+MIT

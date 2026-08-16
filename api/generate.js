@@ -1,6 +1,6 @@
 const Groq = require('groq-sdk').default;
 
-const groq = new Groq({ apiKey: process.env.ANTHROPIC_API_KEY });
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 module.exports = async function handler(req, res) {
   console.log('API called, method:', req.method);
