@@ -24,7 +24,7 @@ Return only valid JSON, no extra text.`;
 
   try {
     const chatCompletion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: "openai/gpt-oss-20b",
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.7,
       max_tokens: 1024,
