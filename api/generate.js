@@ -6,7 +6,9 @@ let groqClient = null;
 function getGroqClient() {
   const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey || !apiKey.trim()) {
-    throw new Error('GROQ_API_KEY environment variable is missing or empty. Please add GROQ_API_KEY to your Vercel project environment variables.');
+    throw new Error(
+      'GROQ_API_KEY environment variable is missing or empty. Please add GROQ_API_KEY to your Vercel project environment variables.'
+    );
   }
 
   if (!groqClient) {
@@ -14,6 +16,8 @@ function getGroqClient() {
   }
   return groqClient;
 }
+
+const PRIMARY_MODEL = process.env.GROQ_MODEL || 'qwen/qwen3.8-27b';
 
 module.exports = async function handler(req, res) {
   // Set CORS headers
@@ -74,7 +78,7 @@ Requirements:
 
   try {
     const chatCompletion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: PRIMARY_MODEL,
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },

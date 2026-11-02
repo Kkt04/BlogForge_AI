@@ -48,7 +48,7 @@ export default function App() {
       <Navbar />
       <main className="container" id="generate">
         <section className="hero">
-          <div className="hero-badge">✦ Powered by LLaMA 3.3 70B & Groq</div>
+          <div className="hero-badge">✦ Ultra-Fast Inference Powered by Groq</div>
           <h1 className="hero-title">
             Generate Blog Posts<br />
             <span className="highlight">in Seconds</span>

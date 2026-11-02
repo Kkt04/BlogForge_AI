@@ -17,6 +17,8 @@ function getGroqClient() {
   return groqClient;
 }
 
+const PRIMARY_MODEL = process.env.GROQ_MODEL || 'qwen/qwen3.8-27b';
+
 router.post('/generate', async (req, res) => {
   const { topic, tone = 'Professional', wordCount = '~600 words', keywords } = req.body || {};
 
@@ -59,7 +61,7 @@ Requirements:
 
   try {
     const chatCompletion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: PRIMARY_MODEL,
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },

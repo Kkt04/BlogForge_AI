@@ -2,13 +2,13 @@
 
 # ✦ BlogForge AI ✦
 
-### AI-Powered Blog Post Generator Powered by LLaMA 3.3 (70B) & Groq
+### AI-Powered Blog Post Generator Powered by Groq & High-Speed LLMs
 
 [![Vercel Deployment](https://img.shields.io/badge/Deployed%20with-Vercel-black?style=flat-square&logo=vercel)](https://blog-forge-ai-pi.vercel.app)
 [![React](https://img.shields.io/badge/Frontend-React%2018%20%7C%20Vite-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 [![Node.js](https://img.shields.io/badge/Backend-Node.js%20%7C%20Express-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
 [![Groq](https://img.shields.io/badge/LLM%20Inference-Groq%20Cloud-f55036?style=flat-square)](https://groq.com)
-[![Model](https://img.shields.io/badge/Model-LLaMA%203.3--70B-purple?style=flat-square)](https://llama.meta.com)
+[![Model](https://img.shields.io/badge/Inference-Groq%20LPU%20Engine-purple?style=flat-square)](https://groq.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 **Generate comprehensive, publish-ready, SEO-optimized blog posts in seconds.**
@@ -44,13 +44,13 @@
 
 **BlogForge AI** is an intelligent content generation tool that crafts structured, high-quality blog posts tailored to your chosen topic, tone, length, and SEO keywords. 
 
-Powered by **Meta's LLaMA 3.3-70B Versatile** via **Groq's ultra-low-latency LPU inference engine**, BlogForge AI streams structured JSON responses in milliseconds, guaranteeing well-formatted articles complete with titles, structured sections, live word counts, read times, and one-click clipboard copying.
+Powered by high-performance models via **Groq's ultra-low-latency LPU inference engine**, BlogForge AI streams structured JSON responses in milliseconds, guaranteeing well-formatted articles complete with titles, structured sections, live word counts, read times, and one-click clipboard copying.
 
 ---
 
 ## ✨ Key Features
 
-- **⚡ Lightning-Fast Inference**: Ultra-low latency responses powered by Groq's LPU engine running LLaMA 3.3-70B.
+- **⚡ Lightning-Fast Inference**: Ultra-low latency responses powered by Groq's LPU inference engine.
 - **🎨 Configurable Tone**: Choose between *Professional*, *Casual*, *Persuasive*, and *Informative* voices.
 - **📏 Target Lengths**: Select flexible word count targets (~300, ~600, or ~1000 words).
 - **🎯 SEO Keyword Injection**: Naturally weave target keywords into headings and body paragraphs.
@@ -90,7 +90,7 @@ flowchart LR
 
     subgraph AI["Groq AI Cloud"]
         GroqSDK[Groq SDK Client]
-        LLM[LLaMA 3.3 70B Versatile]
+        LLM[High-Performance LLM]
     end
 
     UI -->|POST /api/generate| API
