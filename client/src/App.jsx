@@ -13,6 +13,7 @@ export default function App() {
     setLoading(true);
     setError('');
     setBlog(null);
+
     try {
       const isProd = import.meta.env.PROD;
       const apiUrl = isProd ? '' : (import.meta.env.VITE_API_URL || '');
@@ -21,11 +22,22 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      if (!res.ok) throw new Error('Generation failed');
-      const data = await res.json();
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        const errorMsg = data?.error || `Generation failed with status ${res.status}. Please try again.`;
+        throw new Error(errorMsg);
+      }
+
+      if (!data || !data.title || !Array.isArray(data.sections)) {
+        throw new Error('Received unexpected blog post format from the server.');
+      }
+
       setBlog(data);
     } catch (err) {
-      setError('Something went wrong. Please try again.');
+      console.error('Generation error:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -36,7 +48,7 @@ export default function App() {
       <Navbar />
       <main className="container" id="generate">
         <section className="hero">
-          {/* <div className="hero-badge">✦ Powered by Claude AI</div> */}
+          <div className="hero-badge">✦ Powered by LLaMA 3.3 70B & Groq</div>
           <h1 className="hero-title">
             Generate Blog Posts<br />
             <span className="highlight">in Seconds</span>

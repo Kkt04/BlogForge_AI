@@ -1,7 +1,10 @@
 {
-  "name": "blogforge-api",
+  "name": "blogforge-ai",
   "version": "1.0.0",
-  "main": "api/generate.js",
+  "private": true,
+  "scripts": {
+    "build": "cd client && npm run build"
+  },
   "dependencies": {
     "groq-sdk": "^1.1.2"
   }
